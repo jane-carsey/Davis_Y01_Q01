@@ -1,0 +1,158 @@
+\documentclass[letterpaper,12pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsthm}
+\begin{document}
+
+
+\begin{flushright} \large{Jane Carsey ID: 917851397} \end{flushright}
+\large{STA 200A Homework 1} 
+
+
+\begin{enumerate}
+
+\item
+\begin{enumerate}
+\item[a.]
+The total options for the first two places of the license plate are $26^2$. The total number of options for the remaining five places, which must be numbers, is $10^5$ as each individual place can have digits 0-9. Thus, the total number of 7-digit license plates of this format is $26^2 \times 10^5$.
+
+\item[b.]
+Now assuming there can be no repeated characters, the first two places of the license plate, which still must be letters, now have a total number of options $26 \choose 2$ or $26 \times 25$.
+Similarly, the five digits places of the license plate have the total number of options $10 \choose 5$ if no digits are to be repeated.
+The total number of seven-digit license plates with the given limitations are ${26 \choose 2} \times {10 \choose 5} = 19,656,000$.
+\end{enumerate}
+
+
+\item
+The area code limitations are as follows:
+\begin{itemize}
+\item The first digit must be between 2 and 9
+\item The second digit must be either a 0 or 1
+\item The third digit must be between 1 and 9
+\end{itemize}
+
+The total number of area codes possible by this framework is $8 \times 2 \times 9 = 144$. If the first digit is only allowed to be a 4, then the total possible outcomes becomes $1 \times 2 \times 9 = 18$.
+
+
+\item
+How many ways are there to seat 8 people if \ldots
+\begin{enumerate}
+\item[a.] there are no restrictions.
+
+The total arrangements possible is $8! = 40,320$.
+
+\item[b.] persons A and B must sit together.
+
+Consider persons A and B as one entity to be placed among the remaining 6 individuals. There are $7!$ ways of arranging these ''entities.'' However, persons A and B can also switch places between themselves and the arrangement would still be valid. Thus, the total number of arrangements is $7! \times 2! = 10,080$.
+
+\item[c.] there are four men, four women, and no two men or two women can sit next to each other.
+
+The overall order to satisfy the given requirement must be every other (i.e. M, W, M, W... or vice versa). If men are seated first, there are $4!$ ways of arranging the men and then another $4!$ ways of arranging the women. However, the people may also be arranged such that the women are seated first. In this case, there are again $4!$ ways of seating the women and $4!$ ways of seating the men. The total number of possible arrangments is then $4! \times 4! \times 4! \times 4! = 331,776$.
+
+\item[d.] there are five men and they must be seated next to each other.
+
+The approach is similar to part b. The five men can be considered as one entity. The arrangement of this single group of men among the remaining three women has $4!$ possible outcomes. Within the men themselves, in each of these $4!$ arrangements of the whole group, the men have an additional $5!$ arrangements. The total number of arrangements of the eight individuals is $4! \times 5! = 2,880$.
+
+\item[e.] there are four married couples and each couple must sit together.
+
+There are $4!$ ways of arranging the couples. Additionally, each couple has $2!$ arrangements between themselves. So there are $4! \times 2!  \times 2! \times 2! \times 2! = 384$.
+\end{enumerate}
+
+
+
+\item
+Consider some individual A of the group of twenty. They must shake hands 19 times in order to shake every other individual's hand. Now consider individual B. They must also shake hands 19 times themselves, but we have already counted their handshake with person A and so the total number of \emph{previously uncounted} handshakes is 18. This pattern continues until we reach the 20th individual of the group, for whom we have already counted all of their handshakes. The total number of handshakes is $19 +  18 + \cdots + 2 + 1 + 0 = 190$.
+
+
+
+\item
+In order to divide twelve individuals into three committees of sizes 3, 4, and 5, respectively, we can simply use the multinomial coefficient. ${12 \choose 3,4,5} = \frac{12!}{3! \times 4! \times 5!} = 27,720$.
+
+
+
+\item
+Consider the number of ways of taking a subset of size $k$ from $n$ items. One way to determine all possible arrangements is to determine the number of arrangements where $i$ is the largest item in the subset. We must pick said $i \in \{1, 2, \cdots, n\}$. Then we have $k-1$ remaining items to choose. But in order to ensure that $i$ is the largest item, we may only choose the remaining $k-1$ items from $\{1, 2, \cdots, i-1\}$. So for a given $i$, the total number of subsets with $i$ as the largest item is ${i-1 \choose k-1}$. We can apply this process to every such $i \le n$. Summing across each $i$ would then be the total number of ways of choose $k$ items from $n$ with a given maxiumum $i$. More generally, this sum is equivalent to every possible way of choosing $k$ items from $n$ or ${n \choose k} = \sum_{i=k}^n{{i-1 \choose k-1}}$.
+
+
+
+\item Prove without using the binomial theorem that $\sum_{k=0}^n{n \choose k} = 2^n$.
+
+First, we can show that the equality holds for the case $n = 0$.
+\[ {0 \choose 0} = 2^0 = 1 \]
+
+Now, we claim that the equality holds for some $m \le n$ such that $\sum_{k=0}^m{m \choose k} = 2^m = {m \choose 0} + {m \choose 1} + \cdots + {m \choose k}$.
+
+Finally, we must show that the equality holds for the case $n + 1$.
+
+The expansion of the sum $\sum_{k=0}^{n+1}{n+1 \choose k}$ is equal to 
+\[ {n+1 \choose 0} + {n+1 \choose 1} + \cdots + {n+1 \choose n} + {n+1 \choose n+1}. \]
+
+The first and last terms of the expansion are both necessarily equal to 1 and so can be pulled out of the sum and written as 2. The remaining terms can be simplified into a new sum as shown:
+\[ \sum_{k=0}^{n+1}{n+1 \choose k} = 2 +  \sum_{k=1}^n{n+1 \choose k}. \]
+
+Pascal's identity states that ${n+1 \choose k} = {n \choose k-1} + {n \choose k}$. We can use this to rewrite $\sum_{k=1}^n{n+1 \choose k}$ as 
+\[ \sum_{k=1}^n \left[ {n \choose k-1} + {n \choose k} \right] =  \sum_{k=1}^n{n \choose k-1} + \sum_{k=1}^n{n \choose k}. \]
+
+Now let $j = k-1$ for the first sum on the right hand side above so that 
+\[ \sum_{k=0}^{n+1}{n+1 \choose k} = 2 +  \sum_{j=0}^{n-1}{n \choose j} + \sum_{k=1}^n{n \choose k}. \]
+
+We can rewrite $\sum_{j=0}^{n-1}{n \choose j}$ as $\sum_{j=0}^{n}{n \choose j} - {n \choose n}$ (similar to writing $a = a + 1 - 1$). And we can write $\sum_{k=1}^n{n \choose k}$ as $\sum_{k=0}^n{n \choose k} - {n \choose 0}$ in order to change the indices.
+
+Again, ${n \choose n}$ and ${n \choose 0}$ are both equal to 1. So we can write 
+\begin{eqnarray*}
+\sum_{k=0}^{n+1}{n+1 \choose k} & = & 2 +  \left[ \left( \sum_{j=0}^{n}{n \choose j} - 1 \right) + \left( \sum_{k=0}^n{n \choose k} - 1 \right) \right] \\
+					      & = & 2 +  \sum_{j=0}^{n}{n \choose j} + \sum_{k=0}^n{n \choose k} - 2 \\
+					      & = &  \sum_{j=0}^{n}{n \choose j} + \sum_{k=0}^n{n \choose k}.
+\end{eqnarray*}
+
+The terms $\sum_{j=0}^{n}{n \choose j}$ and $\sum_{k=0}^n{n \choose k}$ are equivalent as the choice of index letter is arbitrary. So we can write
+\[ \sum_{k=0}^{n+1}{n+1 \choose k} = 2 \times \sum_{k=0}^n{n \choose k} = 2 \times 2^n. \]
+\begin{flushright} \qed \end{flushright}
+
+
+\item
+This might be wrong. Do I need to do n-k-1 for any of these terms?
+
+There are ${n \choose m}$ possible ways to select a sample size of size $m$ from the $n$ items. We will assume that each of these samples are equally likely. Let us fix the sample such that there is one defective item. There are $k$ different ways to choose this first item. The remaining items of the sample of size $m$ could be either defective or not, but the total number of ways of choosing the remainder of the sample is ${n-1 \choose m-1}$. Thus, the total number of viable ways of having at least one defective item is $k \times {n-1 \choose m-1}$ and so the probability of having at least one defective item is $\frac{k \times {n-1 \choose m-1}}{{n \choose m}}.$ We can expand and simplify this as shown below:
+\begin{eqnarray*}
+\frac{k \times {n-1 \choose m-1}}{{n \choose m}} & = & \frac{k \times (n-1)! \times (n-m)! \times m!}{(n-1-(m-1))! \times (m-1)! \times n!} \\
+							      & = & \frac{k \times (n-1)! \times (n-m)! \times (m!}{(n-m)! \times (m-1)! \times m!} \\
+							      & = & \frac{k \times (n-1)! \times m!}{(m-1)! \times n!} \\
+							      & = & \frac{k \times m}{n} 
+\end{eqnarray*}
+We can rearrange this as we desire to solve for m based on a given probability 0.9 to get $m = \frac{0.9 \times n}{k}.$
+
+\begin{enumerate}
+\item[a.] $n = 1,000, k = 10$
+
+Plugging in, we get $m = \frac{0.9 \times 1,000}{10} = 90.$ 
+
+\item[b.] $n = 10,000, k = 100$
+
+Our new $m$ is $m = \frac{0.9 \times 10,000}{100} = 90.$ 
+
+\item
+\begin{enumerate}
+\item[a.] $P(\mbox{all five in same class})$
+
+There are ${60 \choose 30,30} = {60 \choose 30}$ possible ways to choose the two classes.  
+
+If we place the five children who are friends in one class, there are two ways to do that (i.e. they are either in class A or class  B). Then, there are 55 remaining children to be divided in each case. This is represented by ${55 \choose 25,30} \times 2$ and so the probability can be calculated by dividing the number of ways that the students can be arranged so that the condition is satisfied divided by the entire possible number of arrangements. So we have 
+\[  P(\mbox{all five in same class}) =  \frac{{55 \choose 25,30} \times 2}{{60 \choose 30}} \approx 0.052\]
+
+\item[b.] $P(\mbox{exactly four are in same class})$
+
+Any combination of the four must be in one class to satisfy the requirement. There are ${5 \choose 4}$ ways to arrange the four girls who will be together.  Then, there are ${55 \choose 26,29}$ ways of arranging the remaining 55 students if the group of four were in class A and the singleton in class B. However, we must also consider the case where the group of four is in class B and the singleton in class A so we must multiply by 2. Then,
+\[  P(\mbox{exactly four in same class}) =  \frac{{5\ choose 4}{55 \choose 26,29} \times 2}{{60 \choose 30}} \approx 0.301\]
+
+
+\item[c.] $P(\mbox{Marcelle is in one class and friends are in the other})$
+
+There are two possible ways for this to occur. Marcelle can either be placed in class A or class B. The four others must be placed in whichever class Marcelle is not. Then there are ${55 \choose 26,29}$ ways of placing the remaining students in either of the two classes. Thus the total number of viable arrangements is ${55 \choose 26,29} \times 2$ and so
+\[  P(\mbox{Marcelle in class by herself}) =  \frac{{55 \choose 26,29} \times 2}{{60 \choose 30}} \approx 0.06\]
+
+\end{enumerate}
+
+
+
+\end{enumerate}
+\end{document}
